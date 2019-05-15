@@ -1,0 +1,1 @@
+import './styles/index.scss'import Player from "./player";new Player();export default Player;

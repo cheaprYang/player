@@ -1,0 +1,32 @@
+{
+  "name": "Player",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "scripts": {
+    "serve": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build ",
+    "lint": "vue-cli-service lint"
+  },
+  "main": "dist/Player.common.js",
+  "dependencies": {
+    "babel-plugin-component": "^1.1.1",
+    "compression-webpack-plugin": "^2.0.0",
+    "core-js": "^2.6.5",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-post-compile-plugin": "^1.0.0",
+    "webpack-transform-modules-plugin": "^0.4.3"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.0.5",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "sass-loader": "^7.1.0"
+  },
+  "keywords": [],
+  "license": "ISC"
+}

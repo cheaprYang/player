@@ -1,0 +1,14 @@
+.DS_Store
+bin-release
+bin-debug
+*.iml
+http/node_modules
+node_modules
+dist/*
+build
+.idea/
+*.orig
+yarn.lock
+package-lock.json
+sandbox/*
+!sandbox/*.example
