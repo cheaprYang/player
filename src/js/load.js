@@ -1,0 +1,1 @@
+export default src => {  const script = document.createElement("script");  script.type = "text/javascript";  return new Promise((res, rej) => {    script.src = src;    script.onload = function() {      res();    };    script.onerror = function() {      rej();    };    document.querySelector("head").appendChild(script);  });};

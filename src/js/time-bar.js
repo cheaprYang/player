@@ -1,0 +1,1 @@
+class TimeBar {  constructor(tel) {    this.timeBarLoad = tel.timeBarLoad;    this.timeBarLine = tel.timeBarLine;    this.timeBarThumb = tel.timeBarThumb;  }}export default TimeBar;
