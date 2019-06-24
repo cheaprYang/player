@@ -1,15 +1,14 @@
-const path = require("path");
+const path = require('path');
 module.exports = {
   lintOnSave: true,
   productionSourceMap: false,
-
+  filenameHashing: false,
   pages: {
     index: {
-      entry: "./src/index.js",
-      template: "demo/index.html"
+      entry: './src/index.js',
+      template: 'demo/index.html'
     }
   },
-
   configureWebpack: config => {
     // if (process.env.NODE_ENV === "production") {
     //   config.bail = true;
@@ -17,7 +16,7 @@ module.exports = {
     //     Player: "./src/index.js"
     //   };
     //   config.output = {
-    //     path: path.resolve(__dirname, "dist"),
+    //     path: path.resolve(__dirname, "./dist"),
     //     filename: "[name].min.js",
     //     library: "[name]",
     //     libraryTarget: "umd",
@@ -25,51 +24,36 @@ module.exports = {
     //     umdNamedDefine: true,
     //     publicPath: "/"
     //   };
-    //   config.node = {
-    //     dgram: "empty",
-    //     fs: "empty",
-    //     net: "empty",
-    //     tls: "empty"
-    //   };
-    //   config.plugins = [];
-    //   // delete config.optimization;
+    //    delete config.optimization;
     // }
   },
 
   chainWebpack: config => {
     config.module
-      .rule("handlebars")
-      .test(/\.handlebars$/)
-      .use("handlebars-loader")
-      .loader("handlebars-loader")
-      .end();
-    config.module.rule("images").uses.clear();
-    config.module.rule("media").uses.clear();
-    config.module.rule("svg").uses.clear();
+    .rule('handlebars')
+    .test(/\.hbs$/)
+    .use('handlebars-loader')
+    .loader('handlebars-loader')
+    .end();
+    config.module.rule('svg').uses.clear();
 
     config.module
-      .rule("svg")
-      .test(/\.(svg)(\?.*)?$/)
-      .use("raw-loader")
-      .loader("raw-loader")
-      .end();
+    .rule('svg')
+    .test(/\.(svg)(\?.*)?$/)
+    .use('raw-loader')
+    .loader('raw-loader')
+    .end();
 
-    config.module.rule("eslint").use("eslint-loader");
-    config.plugins.delete("html");
-    config.plugins.delete("prefetch-index");
-    config.plugins.delete("preload");
-    config.module.delete("vue");
-    config.module.delete("media");
-    config.module.delete("pug");
-    config.module.delete("less");
-    config.module.delete("stylus");
-    config.resolve.alias.delete("vue");
+    config.plugins.delete('prefetch');
+    config.plugins.delete('preload');
+
+
   },
 
   devServer: {
     compress: true,
-    contentBase: path.resolve(__dirname, "..", "demo"),
-    clientLogLevel: "none",
+    contentBase: path.resolve(__dirname, '..', 'demo'),
+    clientLogLevel: 'none',
     quiet: false,
     open: true,
     historyApiFallback: {

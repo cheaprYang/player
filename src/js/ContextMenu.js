@@ -1,0 +1,1 @@
+class ContextMenu {  constructor(player) {    this.context =[      {        name:'播放器切换',        event:(e)=>{        }      }    ]  }  init(){  }}
