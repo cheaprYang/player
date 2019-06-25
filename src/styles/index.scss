@@ -1,1 +1,465 @@
-.player{  position: relative;  overflow: hidden;  user-select: none;  line-height: 1.5;  border-radius: 4px;  box-shadow: 0 0 8px #e5e9ef;  &*{    user-select: none;  }  &-container{    position: relative;    background: #000;    font-size: 0;    width: 100%;    height: 100%;  }  &-video{    display: block;    width: 100%;    height: 100%;    &-loading{      position: absolute;      top: 0;      left: 0;      width: 100%;      height: 100%;      z-index: 14;      background-color: #fff;      cursor: pointer;      &-image{        position: absolute;        width: 100%;        height: 100%;        display: flex;        justify-content: center;        align-items: center;        &-detail{          display: block;          width: 160px;          height: 100px;          background:transparent url("../assets/loding.gif") no-repeat 50% 50%;          background-size: contain;        }      }    }  }  &-poster{    position: absolute;    top: 0;    left: 0;    right: 0;    bottom: 0;    background-size: cover;    background-repeat: no-repeat;    z-index: 0;  }  &-playing{    .player-poster{      display: none;    }  }  &-liveing{    .player-time-duration{      display: none;    }  }  &-loading{    .player-loading-icon{      display: block;    }  }  &-mask,&-context-mask{    position: absolute;    width: 100%;    height: 100%;    pointer-events: auto;  }  &-context-mask{    //display: none;    z-index: 4;  }  &-mask{    z-index: 1;    display: none;    &.player-show{      display: block;      z-index: 5;    }  }  &-controller{    position: absolute;    height: 40px;    width: 100%;    bottom: 0;    z-index: 10;    user-select: none;    transition: all .3s ease;    background: rgba(0,0,0,.6);    &-left,&-right{      position: absolute;      bottom: 0;      width: auto;      height: 100%;    }    &-left{      left: 20px;    }    &-right{      right: 20px;    }  }  //&:hover{  //  .player-controller{  //    opacity: 1;  //    cursor: pointer;  //    z-index: 2;  //  }  //}  &-time{    padding: 5px 0;    cursor: pointer;    position: absolute;    bottom: 35px;    //width: calc(100% - 10px);    width: 100%;    height: 3px;    left:0;    &:hover{      .player-time-bar-thumb{        transform: scale(1,.5);      }      .player-time-bar,.player-time-bar-line,.player-time-bar-load{        transform: scaleY(1.5)      }    }    &-bar{      position: relative;      height: 3px;      width: 100%;      background: rgba(255,255,255,.2);      cursor: pointer;    }    &-bar-line{      position: absolute;      left: 0;      top: 0;      bottom: 0;      height: 3px;      will-change: width;      background: #f00;      width: 0;    }    &-bar-thumb{      display: inline-block;      position: absolute;      top: 0;      right: 5px;      height: 11px;      width: 11px;      border-radius: 50%;      cursor: pointer;      transition: all .25s ease-in;      background: #f00;      margin-top: -4px;      margin-right: -10px;      transform: scale(0);    }    &-bar-load{      position: absolute;      left: 0;      top: 0;      bottom: 0;      height: 3px;      width:0;      background: #aaa;    }    &-duration{      display: inline-block;      color: #fff;      font-size: 12px;      margin-left: 15px;      height: 100%;      line-height: 40px;      span{        vertical-align: middle;      }    }  }  &-volume{    display: inline-block;    width: auto;    height: 100%;    &-bar{      position: relative;      display: inline-block;      width: 100px;      height: 4px;      background:#aaa;      border-radius: 2px;      cursor: pointer;    }    &-bar-line{      position: absolute;      top: 0;      height: 4px;      background: #fff;      border-radius: 2px;    }    &-bar-thumb{      display: inline-block;      width: 10px;      height: 10px;      border-radius: 50%;      background: #fff;      position: absolute;      right: -5px;      margin-top: -3px;      z-index: 1;      cursor: pointer;    }  }  &-full-btn,&-setting-btn,&-volume-btn,.player-btn,&-refresh{    width: 35px;    height: 100%;    padding: 5px;  }  &-refresh{    //svg{    //  transition: transform 200ms ease-in;    //}    &.player-animation-rotate{      svg{        //transform: rotate(-180deg);        -webkit-animation: rotate360 1s infinite linear ;        -webkit-transform-origin: center center;        -ms-transform-origin: center center;        transform-origin: center center;      }    }  }  &-setting{    &-container{      position: absolute;      right: 12px;      bottom: 55px;      height: 240px;      width: 200px;      padding: 10px 10px;      border-radius: 2px;      background: rgba(28,28,28,.9);      transition: all .3s ease-in-out;      overflow: hidden;      z-index: 0;      transform: translateX(200%);      &.player-setting-show{        transform: translateX(0);        z-index: 5;      }    }    &-panel{      width: 100%;      display: flex;      align-content: center;      margin-left: -4px;      &-item{        flex: 1;        color: #fff;        height: 20px;        cursor: pointer;        position: relative;        text-align: center;        line-height: 20px;        font-size: 12px;        list-style-type: none;        border-radius: 2px;        margin: 0 4px;        background-color: hsla(0,0%,100%,.3);        transition: all .2s;        &:hover{          background-color: hsla(0,0%,100%,.5);        }        &.active{          color: #fff;          background-color: #ff0000;        }      }    }    &-title{      height: 16px;      color: #fff;      font-size: 12px;      margin-bottom: 10px;    }  }  &-setting,&-full{    display: inline-block;    height: 100%;  }  &-context-panel{    position: absolute;    top: 0;    left: 0;    height: 180px;    width: 180px;    border-radius: 2px;    background: rgba(28,28,28,.9);    padding: 8px 0;    transition: all .25s ease-in;    overflow: hidden;    z-index: 0;    display: none;  }  &-contextmenu-show{    .player-context-panel{      display: block;    }  }  [data-tip='show']{    position: relative;    &:hover:before {      //transform: translate(-50%);      bottom: 110%;      opacity: 1;    }  }  [data-tip='show']:before{    position: absolute;    min-width: 38px;    border-radius: 4px;    bottom: 100%;    left: 50%;    padding: 5px 5px;    transform: translateX(-50%);    font-size: 12px;    background: hsla(0,0%,7%,.9);    color: #fff;    content: attr(data-tip-txt);    opacity: 0;    pointer-events: none;    transition: all 250ms ease-out 250ms;    text-align: center;    z-index: 1;  }  &-notice{    position: absolute;    top: 50%;    left: 50%;    transform: translate(-50%);    border-radius: 4px;    background: rgba(28,28,28,.9);    padding: 5px 15px;    transition: all .25s ease-in-out;    overflow: hidden;    color: #fff;    pointer-events: none;    opacity: 0;  }  &-loading-icon{    display: none;    position: absolute;    top: 50%;    left: 50%;    z-index: 0;    pointer-events: none;    width: 40px;    height: 40px;    margin-top: -20px;    margin-left: -20px;    -webkit-animation: rotate360 1s infinite linear ;    -webkit-transform-origin: center center;    -ms-transform-origin: center center;    transform-origin: center center;  }  svg{    width: 100%;    height: 100%;  }  path{    fill: #fff;  }  button{    border: none;    background-color: transparent;    outline: none;    cursor: pointer;    vertical-align: middle;    box-sizing: border-box;    display: inline-block;  }}@mixin keyframes($animationName) {  @-webkit-keyframes #{$animationName} {    @content;  }  @-moz-keyframes #{$animationName} {    @content;  }  @-o-keyframes #{$animationName} {    @content;  }  @keyframes #{$animationName} {    @content;  }}@include keyframes(rotate360) {  0%   {    transform: rotate(0deg);  }  100% {    transform: rotate(-360deg);  }}
+$css-prefix:'player';
+$class-prefix:$css-prefix+'-video';
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  @extend .relative;
+  display: block;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: initial;
+}
+.hide{
+  display: none !important;
+}
+.show{
+  display: block;
+}
+.clearfix{
+  *zoom: 1;
+  &:after,&:before{
+    content: "";
+    display: table;
+    overflow: hidden;
+  }
+  &:after{
+    clear: both;
+  }
+}
+
+.#{$css-prefix} {
+  @extend .relative;
+  overflow: hidden;
+  user-select: none;
+  line-height: 1.5;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #e5e9ef;
+
+  & * {
+    user-select: none;
+  }
+  .#{$class-prefix} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    &-container {
+      @extend .relative;
+      background: #000;
+      font-size: 0;
+      width: 100%;
+      height: 100%;
+    }
+    &-loading {
+      @extend .absolute;
+      top: 0;
+      left: 0;
+      z-index: 14;
+      background-color: #fff;
+      cursor: pointer;
+      &-image {
+        @extend .absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-detail {
+          display: block;
+          width: 160px;
+          height: 100px;
+          background: transparent url("../assets/loding.gif") no-repeat 50% 50%;
+          background-size: contain;
+        }
+      }
+    }
+    &-poster {
+      @extend .absolute;
+      top: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+    &-controller {
+      @extend .absolute;
+      height: 40px;
+      bottom: 0;
+      z-index: 10;
+      user-select: none;
+      transition: all 0.3s ease;
+      background: linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7));
+
+      &-left,
+      &-right {
+        @extend .absolute;
+        bottom: 0;
+        width: auto;
+        height: 28px;
+        top: 8px;
+      }
+      &-left{
+        left: 20px;
+      }
+      &-right{
+        right: 20px;
+      }
+      &-item{
+        float: left;
+        width: auto;
+        display: block;
+        text-align: center;
+        margin: 0 8px;
+        .btn{
+          height: 100%;
+          max-width: 25px;
+          text-align: center;
+        }
+        &-time{
+          display: inline-block;
+          color: #fff;
+          font-size: 12px;
+          height: 100%;
+          span {
+            vertical-align: middle;
+          }
+        }
+      }
+      .#{$class-prefix}-volume {
+        width: auto;
+        height: 100%;
+        &-btn{
+          .btn{
+            float: left;
+          }
+
+        }
+        &-bar {
+
+          float: left;
+          position: relative;
+          width: 100px;
+          height: 4px;
+          margin: 10px 8px 0 8px;
+          background: #aaa;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+
+        &-bar-line {
+          position: absolute;
+          top: 0;
+          height: 4px;
+          background: #fff;
+          border-radius: 2px;
+        }
+        &-bar-thumb {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #fff;
+          position: absolute;
+          right: -5px;
+          margin-top: -3px;
+          z-index: 1;
+          cursor: pointer;
+        }
+      }
+      &-time{
+        color: #fff;
+      }
+    }
+    &-time {
+      @extend .absolute;
+      bottom: 35px;
+      height: 3px;
+      left: 0;
+      padding: 5px 0;
+      cursor: pointer;
+      &:hover {
+        .#{$css-prefix}-time-bar-thumb {
+          transform: scale(1, 0.5);
+        }
+        .#{$css-prefix}-time-bar,
+        .#{$css-prefix}-time-bar-line,
+        .#{$css-prefix}-time-bar-load {
+          transform: scaleY(1.5);
+        }
+      }
+      &-bar {
+        @extend .relative;
+        height: 3px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+      }
+      &-bar-line {
+        @extend .absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 3px;
+        will-change: width;
+        background: #f00;
+        width: 0;
+      }
+      &-bar-thumb {
+        display: inline-block;
+        @extend .absolute;
+        top: 0;
+        right: 5px;
+        height: 11px;
+        width: 11px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.25s ease-in;
+        background: #f00;
+        margin-top: -4px;
+        margin-right: -10px;
+        transform: scale(0);
+      }
+
+
+      &-bar-load {
+        @extend .absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0;
+        background: #aaa;
+      }
+    }
+    &-setting {
+      &-container {
+        position: absolute;
+        right: 12px;
+        bottom: 55px;
+        height: 240px;
+        width: 200px;
+        padding: 10px 10px;
+        border-radius: 2px;
+        background: rgba(28, 28, 28, 0.9);
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        z-index: 0;
+        transform: translateX(200%);
+
+
+        &.player-setting-show {
+          transform: translateX(0);
+          z-index: 5;
+        }
+      }
+
+      &-panel {
+        width: 100%;
+        display: flex;
+        align-content: center;
+        margin-left: -4px;
+
+
+        &-item {
+          flex: 1;
+          color: #fff;
+          height: 20px;
+          cursor: pointer;
+          position: relative;
+          text-align: center;
+          line-height: 20px;
+          font-size: 12px;
+          list-style-type: none;
+          border-radius: 2px;
+          margin: 0 4px;
+          background-color: hsla(0, 0%, 100%, 0.3);
+          transition: all 0.2s;
+
+
+          &:hover {
+            background-color: hsla(0, 0%, 100%, 0.5);
+          }
+
+
+          &.active {
+            color: #fff;
+            background-color: #f00;
+          }
+        }
+      }
+
+      &-title {
+        text-align: left;
+        height: 16px;
+        color: #fff;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+    }
+    &-notice {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+      border-radius: 4px;
+      background: rgba(28, 28, 28, 0.9);
+      padding: 5px 15px;
+      transition: all 0.25s ease-in-out;
+      overflow: hidden;
+      color: #fff;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    &-loading-icon {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 0;
+      pointer-events: none;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
+      -webkit-animation: rotate360 1s infinite linear;
+      -webkit-transform-origin: center center;
+      -ms-transform-origin: center center;
+      transform-origin: center center;
+    }
+    &-context-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 180px;
+      width: 180px;
+      border-radius: 2px;
+      background: rgba(28, 28, 28, 0.9);
+      padding: 8px 0;
+      transition: all 0.25s ease-in;
+      overflow: hidden;
+      z-index: 0;
+      display: none;
+    }
+  }
+
+  &-playing {
+    .#{$class-prefix}-poster {
+      @extend .hide;
+    }
+  }
+
+  &-liveing {
+    .#{$class-prefix}-controller-time {
+      @extend .hide;
+    }
+  }
+  &-loading {
+    &.#{$class-prefix}-loading-icon {
+      @extend .show;
+    }
+  }
+
+  &-mask {
+    @extend .absolute;
+    top: 0;
+    pointer-events: auto;
+  }
+
+  &-mask {
+    z-index: 1;
+    display: none;
+    &.player-show {
+      display: block;
+      z-index: 5;
+    }
+  }
+
+
+  &-video-contextmenu-show {
+    .player-context-panel {
+      display: block;
+    }
+  }
+
+
+  [data-tip='show'] {
+    position: relative;
+    &:hover::before {
+      bottom: 110%;
+      opacity: 1;
+    }
+  }
+  [data-tip='show']::before {
+    position: absolute;
+    min-width: 38px;
+    border-radius: 4px;
+    bottom: 100%;
+    left: 50%;
+    padding: 5px 5px;
+    transform: translateX(-50%);
+    font-size: 12px;
+    background: hsla(0, 0%, 7%, 0.9);
+    color: #fff;
+    content: attr(data-tip-txt);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 250ms ease-out 250ms;
+    text-align: center;
+    z-index: 1;
+  }
+
+
+  svg {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+
+  path {
+    fill: #fff;
+  }
+  //.player-animation-rotate {
+  //  -webkit-animation: rotate360 1s infinite linear;
+  //  -webkit-transform-origin: center center;
+  //  -ms-transform-origin: center center;
+  //  transform-origin: center center;
+  //}
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+
+    @content;
+  }
+  @keyframes #{$animationName} {
+
+    @content;
+  }
+}
+
+@include keyframes(rotate360) {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}

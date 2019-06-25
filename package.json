@@ -9,7 +9,8 @@
     "eslint-fix": "eslint src/**/**/*.js --fix",
     "format-code": "prettier-eslint --write \"src/**/*.js\" ",
     "lint": "vue-cli-service lint",
-    "analyz": "vue-cli-service build  --mode analyz"
+    "analyz": "vue-cli-service build  --mode analyz",
+    "lint:css": "stylelint ./src/styles/*.{css,sass,scss} --fix"
   },
   "main": "dist/Player.common.js",
   "dependencies": {
@@ -46,6 +47,12 @@
     "raw-loader": "^2.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "stylelint": "^10.1.0",
+    "stylelint-config-primer": "^7.0.1",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-prettier": "^1.1.1",
+    "stylelint-scss": "^3.8.0",
+    "stylelint-selector-bem-pattern": "^2.1.0",
     "svg-inline-loader": "^0.8.0",
     "template-string-optimize-loader": "^3.0.0",
     "vue-template-compiler": "^2.6.10",
