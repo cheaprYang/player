@@ -16,7 +16,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "dhtspider": "^0.1.0",
-    "webtorrent": "^0.103.4"
+    "webtorrent": "^0.107.16"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
