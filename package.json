@@ -14,7 +14,7 @@
   },
   "main": "dist/Player.common.js",
   "dependencies": {
-    "core-js": "^2.6.5",
+    "core-js": "^3.0.0",
     "dhtspider": "^0.1.0",
     "webtorrent": "^0.107.16"
   },
